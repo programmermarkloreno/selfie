@@ -44,7 +44,7 @@ setStorageValue("vendorIpAddress", "10.0.0.1");
 setStorageValue("selfieReferenceMac", "001A2B3C4D5E");
 
 
-function sendSelfie() {
+async function sendSelfie() {
 
     const imageData = getStorageValue('selfie');
     if (imageData) {
@@ -66,7 +66,7 @@ function sendSelfie() {
 	        formData.append('photo', blob);
 	        formData.append('caption', caption);
 
-	        fetch(url, {
+	        await fetch(url, {
 	            method: 'POST',
 	            body: formData
 	        })
@@ -100,7 +100,8 @@ function sendSelfie() {
 	        		alert('Fetch error: '+err)
 	        	)
 		.finally(() => {
-		    location.reload();
+			alert('Done')
+		    // location.reload();
 		});
 
     	}else {
