@@ -66,6 +66,7 @@ async function sendSelfie() {
 	        formData.append('photo', blob);
 	        formData.append('caption', caption);
 
+	        $("#loaderDiv").attr("class","spinner");
 	        await fetch(url, {
 	            method: 'POST',
 	            body: formData
@@ -78,7 +79,7 @@ async function sendSelfie() {
 	            	setStorageValue("storedMAC", selfieReference);
 	                // alert('Image sent successfully!');
 	                $.toast({
-						  title: 'Info!',
+						  title: 'SUCCESS!',
 						  content: 'Image sent successfully! Thank you!',
 						  type: 'success',
 						  delay: 3000
@@ -88,7 +89,7 @@ async function sendSelfie() {
 	            	setStorageValue("isRegistered", false);
 	                console.error('Error while sending image. Please check internet connection!', data);
 	                $.toast({
-						  title: 'Info!',
+						  title: 'ERROR!',
 						  content: 'Error sending image: '+data,
 						  type: 'error',
 						  delay: 3000
@@ -97,16 +98,20 @@ async function sendSelfie() {
 	            }
 	        })
 	        .catch(err => /*console.error('Fetch error: ', err)*/
-	        		alert('Fetch error: '+err)
+	        		$.toast({
+						  title: 'ERROR!',
+						  content: 'Error sending image: '+err,
+						  type: 'error',
+						  delay: 3000
+					 })
 	        	)
-		.finally(() => {
-			alert('Done')
-		    // location.reload();
-		});
+	        .finally(() => {
+	        	$("#loaderDiv").attr("class","spinner hidden")
+	        });
 
     	}else {
 	        $.toast({
-			  title: 'Info!',
+			  title: 'ERROR!',
 			  content: 'Problem with getting device info!',
 			  type: 'error',
 			  delay: 3000
@@ -116,7 +121,7 @@ async function sendSelfie() {
     } else {
         // alert('Please take a selfie first. Thank you!');
         $.toast({
-		  title: 'Info!',
+		  title: 'ERROR!',
 		  content: 'Please take a selfie first. Thank you!',
 		  type: 'error',
 		  delay: 3000
@@ -146,7 +151,7 @@ var selfieReference = getStorageValue("selfieReferenceMac");
 if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 	console.log("User not take a selfie!");
 	$.toast({
-		  title: 'Info!',
+		  title: 'ERROR!',
 		  content: 'Please take a selfie!',
 		  type: 'error',
 		  delay: 3000
@@ -156,7 +161,7 @@ if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 
 	$( "#selfieBtn" ).prop('disabled', true);	
 	$.toast({
-		  title: 'Info!',
+		  title: 'SUCCESS!',
 		  content: 'You have already submitted your selfie!',
 		  type: 'success',
 		  delay: 3000
@@ -220,7 +225,7 @@ function takeSelfieBtnAction(){
         doneButton.style.display = 'block';
         // alert('Selfie captured and saved!');
         $.toast({
-		  title: 'Info!',
+		  title: 'SUCCESS!',
 		  content: 'Selfie captured and saved!',
 		  type: 'success',
 		  delay: 3000
@@ -228,7 +233,7 @@ function takeSelfieBtnAction(){
     } else {
         // alert('No face detected. Please try again.');
         $.toast({
-		  title: 'Info!',
+		  title: 'ERROR!',
 		  content: 'No face detected. Please try again.',
 		  type: 'error',
 		  delay: 3000
@@ -248,7 +253,7 @@ async function selfieBtnAction(){
         console.error('Error accessing camera: ', err);
         // alert('Camera access failed. Please check permissions and try again.');
          $.toast({
-		  title: 'Info!',
+		  title: 'ERROR!',
 		  content: 'Camera access failed. Please check permissions and try again.',
 		  type: 'error',
 		  delay: 3000
@@ -282,7 +287,7 @@ function cancelSelfieBtnAction(){
     }else{
 			// alert('Error in Cancel selfie!');
 		$.toast({
-		  title: 'Info!',
+		  title: 'ERROR!',
 		  content: 'Error in Cancel selfie! Try to refresh!',
 		  type: 'error',
 		  delay: 3000
