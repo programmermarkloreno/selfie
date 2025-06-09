@@ -140,19 +140,16 @@ function base64ToBlob(base64, type) {
     return new Blob([new Uint8Array(array)], { type: type });
 }
 
-// const selfieReference = getStorageValue("selfieReferenceMac");
 var isRegistered = getStorageValue("isRegistered");
 var storedMac = getStorageValue("storedMAC");
 var selfieReference = getStorageValue("selfieReferenceMac");
-// var button = document.getElementById("selfieBtn");
-// var selfieDisplay = button.style.display;
 // Check if user is online and send selfie
 if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 	console.log("User not take a selfie!");
 	$.toast({
-		  title: 'ERROR!',
+		  title: 'INFO!',
 		  content: 'Please take a selfie!',
-		  type: 'error',
+		  type: 'info',
 		  delay: 2000
 	  });
 	// window.addEventListener('online', sendSelfie());
