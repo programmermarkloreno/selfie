@@ -99,6 +99,10 @@ function sendSelfie() {
 	        .catch(err => /*console.error('Fetch error: ', err)*/
 	        		alert('Fetch error: '+err)
 	        	);
+
+		setTimeout(() => {
+		  console.log("Waited for 2 seconds");
+		}, 5000);
     	}else {
 	        $.toast({
 			  title: 'Info!',
