@@ -40,6 +40,16 @@ function getStorageValue(key){
 	}
 }
 
+function showLoading(isLoading) {
+    const loader = document.getElementById('loaderDiv'); // your loading spinner
+    if (isLoading) {
+        loader.style.display = 'block';
+    } else {
+        loader.style.display = 'none';
+    }
+}
+
+
 setStorageValue("vendorIpAddress", "10.0.0.1");
 setStorageValue("selfieReferenceMac", "001A2B3C4D5E");
 
@@ -98,7 +108,12 @@ function sendSelfie() {
 	        })
 	        .catch(err => /*console.error('Fetch error: ', err)*/
 	        		alert('Fetch error: '+err)
-	        	);
+	        	)
+		.finally(() => {
+		    // Hide loading indicator or re-enable button
+		    showLoading(false);
+		});
+
     	}else {
 	        $.toast({
 			  title: 'Info!',
@@ -118,7 +133,7 @@ function sendSelfie() {
 	  });
     }
 
-    // location.reload();
+    location.reload();
 }
 
 // Function to convert Base64 image to Blob
