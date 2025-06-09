@@ -40,16 +40,6 @@ function getStorageValue(key){
 	}
 }
 
-function showLoading(isLoading) {
-    const loader = document.getElementById('loaderDiv'); // your loading spinner
-    if (isLoading) {
-        loader.style.display = 'block';
-    } else {
-        loader.style.display = 'none';
-    }
-}
-
-
 setStorageValue("vendorIpAddress", "10.0.0.1");
 setStorageValue("selfieReferenceMac", "001A2B3C4D5E");
 
@@ -91,7 +81,7 @@ function sendSelfie() {
 						  title: 'Info!',
 						  content: 'Image sent successfully! Thank you!',
 						  type: 'success',
-						  delay: 5000
+						  delay: 3000
 					  });
 
 	            } else {
@@ -101,7 +91,7 @@ function sendSelfie() {
 						  title: 'Info!',
 						  content: 'Error sending image: '+data,
 						  type: 'error',
-						  delay: 5000
+						  delay: 3000
 					 });
 
 	            }
@@ -110,8 +100,7 @@ function sendSelfie() {
 	        		alert('Fetch error: '+err)
 	        	)
 		.finally(() => {
-		    // Hide loading indicator or re-enable button
-		    showLoading(false);
+		    location.reload();
 		});
 
     	}else {
@@ -119,7 +108,7 @@ function sendSelfie() {
 			  title: 'Info!',
 			  content: 'Problem with getting device info!',
 			  type: 'error',
-			  delay: 5000
+			  delay: 3000
 		  });
 	    }
 
@@ -129,7 +118,7 @@ function sendSelfie() {
 		  title: 'Info!',
 		  content: 'Please take a selfie first. Thank you!',
 		  type: 'error',
-		  delay: 5000
+		  delay: 3000
 	  });
     }
 
@@ -159,7 +148,7 @@ if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 		  title: 'Info!',
 		  content: 'Please take a selfie!',
 		  type: 'error',
-		  delay: 5000
+		  delay: 3000
 	  });
 	// window.addEventListener('online', sendSelfie());
 }else{
@@ -169,7 +158,7 @@ if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 		  title: 'Info!',
 		  content: 'You have already submitted your selfie!',
 		  type: 'success',
-		  delay: 5000
+		  delay: 3000
 	  });
 }
 
@@ -233,7 +222,7 @@ function takeSelfieBtnAction(){
 		  title: 'Info!',
 		  content: 'Selfie captured and saved!',
 		  type: 'success',
-		  delay: 5000
+		  delay: 3000
 	  });
     } else {
         // alert('No face detected. Please try again.');
@@ -241,7 +230,7 @@ function takeSelfieBtnAction(){
 		  title: 'Info!',
 		  content: 'No face detected. Please try again.',
 		  type: 'error',
-		  delay: 5000
+		  delay: 3000
 	  });
     }
  }
@@ -261,7 +250,7 @@ async function selfieBtnAction(){
 		  title: 'Info!',
 		  content: 'Camera access failed. Please check permissions and try again.',
 		  type: 'error',
-		  delay: 5000
+		  delay: 3000
 	  });
       }
     $('#selfieModal').modal('show');
@@ -295,7 +284,7 @@ function cancelSelfieBtnAction(){
 		  title: 'Info!',
 		  content: 'Error in Cancel selfie! Try to refresh!',
 		  type: 'error',
-		  delay: 5000
+		  delay: 3000
 	  });
 		}
 	$('#selfieModal').modal('hide');
