@@ -59,7 +59,6 @@ async function sendSelfie() {
 	        const url = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
 	        const blob = base64ToBlob(imageData, 'image/png');
-	        // const caption = 'MAC:00:1A:2B:3C:4D:5E Vendo:10.0.0.254';
 	        const caption = 'MAC:'+selfieReference+' IP:'+vendorIpAddress;
 	        const formData = new FormData();
 	        formData.append('chat_id', chatId);
@@ -82,7 +81,7 @@ async function sendSelfie() {
 						  title: 'SUCCESS!',
 						  content: 'Image sent successfully! Thank you!',
 						  type: 'success',
-						  delay: 3000
+						  delay: 2000
 					  });
 
 	            } else {
@@ -92,7 +91,7 @@ async function sendSelfie() {
 						  title: 'ERROR!',
 						  content: 'Error sending image: '+data,
 						  type: 'error',
-						  delay: 3000
+						  delay: 2000
 					 });
 
 	            }
@@ -102,7 +101,7 @@ async function sendSelfie() {
 						  title: 'ERROR!',
 						  content: 'Error sending image: '+err,
 						  type: 'error',
-						  delay: 3000
+						  delay: 2000
 					 })
 	        	)
 	        .finally(() => {
@@ -114,7 +113,7 @@ async function sendSelfie() {
 			  title: 'ERROR!',
 			  content: 'Problem with getting device info!',
 			  type: 'error',
-			  delay: 3000
+			  delay: 2000
 		  });
 	    }
 
@@ -124,7 +123,7 @@ async function sendSelfie() {
 		  title: 'ERROR!',
 		  content: 'Please take a selfie first. Thank you!',
 		  type: 'error',
-		  delay: 3000
+		  delay: 2000
 	  });
     }
 
@@ -154,7 +153,7 @@ if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 		  title: 'ERROR!',
 		  content: 'Please take a selfie!',
 		  type: 'error',
-		  delay: 3000
+		  delay: 2000
 	  });
 	// window.addEventListener('online', sendSelfie());
 }else{
@@ -164,7 +163,7 @@ if(isRegistered == null || !isRegistered || (storedMac != selfieReference)){
 		  title: 'SUCCESS!',
 		  content: 'You have already submitted your selfie!',
 		  type: 'success',
-		  delay: 3000
+		  delay: 2000
 	  });
 }
 
@@ -228,7 +227,7 @@ function takeSelfieBtnAction(){
 		  title: 'SUCCESS!',
 		  content: 'Selfie captured and saved!',
 		  type: 'success',
-		  delay: 3000
+		  delay: 2000
 	  });
     } else {
         // alert('No face detected. Please try again.');
@@ -236,7 +235,7 @@ function takeSelfieBtnAction(){
 		  title: 'ERROR!',
 		  content: 'No face detected. Please try again.',
 		  type: 'error',
-		  delay: 3000
+		  delay: 2000
 	  });
     }
  }
@@ -256,7 +255,7 @@ async function selfieBtnAction(){
 		  title: 'ERROR!',
 		  content: 'Camera access failed. Please check permissions and try again.',
 		  type: 'error',
-		  delay: 3000
+		  delay: 2000
 	  });
       }
     $('#selfieModal').modal('show');
@@ -290,7 +289,7 @@ function cancelSelfieBtnAction(){
 		  title: 'ERROR!',
 		  content: 'Error in Cancel selfie! Try to refresh!',
 		  type: 'error',
-		  delay: 3000
+		  delay: 2000
 	  });
 		}
 	$('#selfieModal').modal('hide');
