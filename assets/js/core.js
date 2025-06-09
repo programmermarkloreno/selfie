@@ -277,19 +277,21 @@ function cancelSelfieBtnAction(){
 
 		retakeSelfie();
 		localStorage.removeItem('selfie');
+		location.reload();
+		
 	// Stop the camera stream
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-    }else{
-			// alert('Error in Cancel selfie!');
-		$.toast({
-		  title: 'ERROR!',
-		  content: 'Error in Cancel selfie! Try to refresh!',
-		  type: 'error',
-		  delay: 2000
-	  });
-		}
-	$('#selfieModal').modal('hide');
+ //    if (stream) {
+ //        stream.getTracks().forEach(track => track.stop());
+ //    }else{
+	// 		// alert('Error in Cancel selfie!');
+	// 	$.toast({
+	// 	  title: 'ERROR!',
+	// 	  content: 'Error in Cancel selfie! Try to refresh!',
+	// 	  type: 'error',
+	// 	  delay: 2000
+	//   });
+	// 	}
+	// $('#selfieModal').modal('hide');
 }
 //end for selfie registration
 
